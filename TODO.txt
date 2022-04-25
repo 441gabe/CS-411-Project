@@ -1,0 +1,20 @@
+blah blah
+TODO:
+stuff
+login
+schedule
+register
+return option
+
+make scooter objects?
+
+also going to need to write documentation for the project
+
+gabe:
+login/register
+
+adriana:
+reservation
+
+james:
+returning scooters/tracking
