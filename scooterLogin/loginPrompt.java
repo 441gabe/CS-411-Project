@@ -40,17 +40,31 @@ public class loginPrompt{
             System.out.println("input recieved: " + userInput);
 
 
+            // CASE 1: USER INPUTS A VALID USERNAME
             if(ht1.containsKey(userInput)){
                 System.out.println("PLEASE ENTER PASSWORD");
-                //TODO: COMPLETE THIS CODE
+                user currentUser = (user) ht1.get(userInput);
 
-                //GET PASSWORD FROM THE USER
-                //IF PASSWORD IS CORRECT, GO TO MAIN RUNFILE OR SOMETHING LIKE THAT
+                //password correctness state
+                boolean correct = false;
+
+                while(correct == false){
+                    System.out.println("Please enter your password: ");
+                    String inputPassword = consoleInputScanner.nextLine();
+
+                    if(currentUser.getPassword().equals(inputPassword)){
+                        correct = true;
+                        //TODO: CONTINUE THE CODE OUT TO MAIN RUNFILE
+                        
+                    } else{
+                        System.out.println("Incorrect! Please Try Again");
+                    }
+                }
             } else if(userInput.equals("register")){
                 //TODO: CONNECT THIS TO THE REGISITRATION METHOD
                 //run thing that registers a new account
                 //then go to the same location that the first if statement would go
-                user newUser = register();
+                user newUser = register(ht1);
                 ht1.put(newUser.getUserName(), newUser);
 
                 //enter another runfile like login
@@ -66,14 +80,39 @@ public class loginPrompt{
         consoleInputScanner.close();
     }
 
-    public static user register(){
+    public static user register(Hashtable ht1){
         // make sure to use sleep command so the user can have time to read stuff
         //TODO: complete this section
         //TODO: if i have time make a basic af UI with the inbuilt UI stuff
+        Scanner consoleInputScanner = new Scanner(System.in);
 
+        //new variables that will be filled by the user
+        String newUser;
+        String newFirstName;
+        String newLastName;
+        String newPhone;
+        String newEmail;
+        String newPassword;
 
         //basic return thing so VSC isn't mad at me for the time being
         user user1 = new user("username1","Henry", "Smith", "12345","HSmith@gmail.com", "password");
+
+        boolean validUser = false;
+        while(validUser != true){
+            System.out.println("Please enter your desired username");
+            String usernameInput = consoleInputScanner.nextLine();
+            if(ht1.containsKey(usernameInput)){
+                System.out.println("That username already exists.\nPlease choose a different one.");
+            } else{
+                newUser = usernameInput;
+                validUser = true;
+            }
+        }
+
+        //TODO: name, phone, email, password
+
+
+
         return user1;
     }
 }

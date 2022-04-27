@@ -33,9 +33,9 @@ public class user {
 
     public void editName(String newFirstName, String newLastName){
         //editing first and last name of the user if desired, error checks for blank
-        if(newFirstName.equals("") == false){
+        if(!newFirstName.equals("")){
             firstName = newFirstName;
-        } else if(newLastName.equals("") == false){
+        } else if(!newLastName.equals("")){
             lastName = newLastName;
         }
     }
@@ -64,6 +64,9 @@ public class user {
     }
     public String getEmail(){
         return email;
+    }
+    public String getPassword(){
+        return password;
     }
 
 }
