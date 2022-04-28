@@ -32,6 +32,7 @@ public class ScooterReservation {
     public static void locateSpecificScooters(String scooterBrand, String scooterColor, LocalDate reserveDate, int numOfScooters){
         List<Registeration> findSpecificScooter = new LinkedList<>();
         for(Registeration a : allScooters){
+            
             if(a.getScooterBrand().equals(scooterBrand) && a.getScooterColor().equals(scooterColor)
             && a.getReserveDate().equals(reserveDate) && a.getNumOfScooters() > (numOfScooters))
             {
@@ -45,6 +46,7 @@ public class ScooterReservation {
         }
         System.out.println("Scooter Brand\tScooter Color\tReservation Date\tAvailable Scooters\t");
         System.out.println();
+
         for (Registeration a : findSpecificScooter){
             System.out.printf("%10s%10s%4d%5d\n", a.getScooterBrand(), a.getScooterColor(),
             a.getReserveDate(), a.getNumOfScooters());
