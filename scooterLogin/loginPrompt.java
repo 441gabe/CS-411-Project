@@ -1,6 +1,5 @@
 package scooterLogin;
 import java.util.*;
-import java.io.*;
 
 public class loginPrompt{
     public static void main(String[] args){
@@ -14,17 +13,19 @@ public class loginPrompt{
         user user1 = new user("username1","Henry", "Smith", "12345","hello@gmail.com", "111");
         ht1.put("user1", user1);
 
-        System.out.println(ht1.get("user1"));
-        System.out.println(user1.getUserName());
+        loginMethod(ht1);
+
+        //System.out.println("Success");
     }
 
 
 
-    public void loginMethod(Hashtable ht1){
+    public static void loginMethod(Hashtable ht1){
         String userInput = "";
         Scanner consoleInputScanner = new Scanner(System.in);
+        boolean exitCondition = false;
 
-        while(userInput.equals("exit") == false){
+        while(!exitCondition){
             // main menu for now i guess
 
             /*
@@ -33,44 +34,64 @@ public class loginPrompt{
             */
             
             
-            System.out.println("Input 'exit' to exit the program anytime.\nPlease enter your username to continue: ");
+            System.out.println(
+                "Input 'exit' to exit the program anytime.\n"
+                + "Please enter your username to continue: "
+                + "Or type in 'register' to create a new account."
+                );
+            
             userInput = consoleInputScanner.nextLine().toLowerCase();
 
-            //JUST FOR TESTING TODO: REMOVE THIS LINE
-            System.out.println("input recieved: " + userInput);
-
-
-            // CASE 1: USER INPUTS A VALID USERNAME
-            if(ht1.containsKey(userInput)){
-                System.out.println("PLEASE ENTER PASSWORD");
+            if(userInput.equals("exit")){
+                exitCondition = true;
+            } 
+            else if(ht1.containsKey(userInput)){
+                // CASE 1: USER INPUTS A VALID USERNAME
                 user currentUser = (user) ht1.get(userInput);
 
                 //password correctness state
                 boolean correct = false;
+                
 
-                while(correct == false){
+                while(!correct){
+                    // NOT SURE WHY VSCODE SAYS THIS ALWAYS EVALUATES TO TRUE, INCORRECT
                     System.out.println("Please enter your password: ");
                     String inputPassword = consoleInputScanner.nextLine();
 
                     if(currentUser.getPassword().equals(inputPassword)){
                         correct = true;
                         //TODO: CONTINUE THE CODE OUT TO MAIN RUNFILE
-                        
+
+
+
+                        System.out.println("SUCCESS!");
+                        consoleInputScanner.close();
+                        return;
                     } else{
                         System.out.println("Incorrect! Please Try Again");
                     }
                 }
             } else if(userInput.equals("register")){
-                //TODO: CONNECT THIS TO THE REGISITRATION METHOD
-                //run thing that registers a new account
-                //then go to the same location that the first if statement would go
+                /*
+                RUNS REGISTRATION METHOD THEN PUTS THE NEW USER OBJECT THAT WAS
+                    RETURNED FROM REGISTRATION INTO THE EXISTING HASH TABLE
+                */
+
                 user newUser = register(ht1);
                 ht1.put(newUser.getUserName(), newUser);
 
-                //enter another runfile like login
+                // TESTING CASES
+                System.out.println(ht1.toString());
+                System.out.println("SUCCESS");
+
+                //TODO: MAKE THIS ENTER ANOTHER RUNFILE, NO NEED TO GO THROUGH LOOP AGAIN
                 
             } else{
-                System.out.println("No current accounts match your input.\nTry again or input 'register' to make a new account");
+                System.out.println(
+                    "No current accounts match your input."
+                    + "\nTry again or input 'register' to make a new account" 
+                    + "\nOr input 'exit' to exit the program"
+                    );
             }
 
 
@@ -81,38 +102,69 @@ public class loginPrompt{
     }
 
     public static user register(Hashtable ht1){
-        // make sure to use sleep command so the user can have time to read stuff
-        //TODO: complete this section
         //TODO: if i have time make a basic af UI with the inbuilt UI stuff
         Scanner consoleInputScanner = new Scanner(System.in);
 
         //new variables that will be filled by the user
-        String newUser;
-        String newFirstName;
-        String newLastName;
-        String newPhone;
-        String newEmail;
-        String newPassword;
+        String newUsername = "";
+        String newFirstName = "";
+        String newLastName = "";
+        String newPhone = "";
+        String newEmail = "";
+        String newPassword = "";
+        
+        // JUST A WELCOME MESSAGE:
+        System.out.println(
+            "------------------------------" + 
+            "\nWelcome to user registration!"
+            );
 
-        //basic return thing so VSC isn't mad at me for the time being
-        user user1 = new user("username1","Henry", "Smith", "12345","HSmith@gmail.com", "password");
+        /*
+        ASKS USER FOR A NEW USERNAME
+        THEN THE IF STATEMENT CHECKS IF THE USERNAME THAT THE USER WANTS ALREADY EXISTS
+        IF THE NEW USERNAME EXISTS ALREADY, THEN ASKS THE USER FOR A DIFFERENT NAME
+        */
 
         boolean validUser = false;
-        while(validUser != true){
+        while(!validUser){
             System.out.println("Please enter your desired username");
             String usernameInput = consoleInputScanner.nextLine();
             if(ht1.containsKey(usernameInput)){
                 System.out.println("That username already exists.\nPlease choose a different one.");
             } else{
-                newUser = usernameInput;
+                newUsername = usernameInput;
                 validUser = true;
             }
         }
 
-        //TODO: name, phone, email, password
+        // ASKING USER FOR THEIR NAME
+        System.out.println("Please enter your first name: ");
+        newFirstName = consoleInputScanner.nextLine();
 
+        System.out.println("Please enter your last name: ");
+        newLastName = consoleInputScanner.nextLine();
 
+        // ASKING USER PHONE NUMBER
+        System.out.println("Please enter your phone number: ");
+        newPhone = consoleInputScanner.nextLine();
 
-        return user1;
+        // ASKING USER EMAIL, MUST CONTAIN AN '@' TO BE A VALID EMAIL
+        boolean validEmail = false;
+        while(!validEmail){
+            System.out.println("Please enter your email: ");
+            newEmail = consoleInputScanner.nextLine();
+            if(newEmail.contains("@")){
+                validEmail = true;
+            } else{
+                System.out.println("Invalid email, please try again.");
+            }
+        }
+
+        // ASKING USER PASSWORD, FOR NOW IT CAN BE ANYTHING THEY WANT
+        System.out.println("Please enter your desired password: ");
+        newPassword = consoleInputScanner.nextLine();
+
+        consoleInputScanner.close();
+        return new user(newUsername, newFirstName, newLastName, newPhone, newEmail, newPassword);
     }
 }
