@@ -8,7 +8,6 @@ public class loginPrompt{
         ////////////////////////////////////////////////////////////////
         FOR TESTING PURPOSES ONLY, HASH TABLE TO READ FROM
         */
-        //TODO: MAKE THIS IN A DATABASE FORMAT
         Hashtable<String, Object> ht1 = new Hashtable<>();
         user user1 = new user("username1","Henry", "Smith", "12345","hello@gmail.com", "111");
         ht1.put("user1", user1);
@@ -60,32 +59,28 @@ public class loginPrompt{
 
                     if(currentUser.getPassword().equals(inputPassword)){
                         correct = true;
-                        //TODO: CONTINUE THE CODE OUT TO MAIN RUNFILE
-
-
-
-                        System.out.println("SUCCESS!");
-                        consoleInputScanner.close();
-                        return;
                     } else{
                         System.out.println("Incorrect! Please Try Again");
                     }
+                    consoleInputScanner.close();
+                    //TODO: UNDER THIS LINE LINK WITH THE RUNFILE
+
+
+
                 }
             } else if(userInput.equals("register")){
                 /*
                 RUNS REGISTRATION METHOD THEN PUTS THE NEW USER OBJECT THAT WAS
                     RETURNED FROM REGISTRATION INTO THE EXISTING HASH TABLE
                 */
-
                 user newUser = register(ht1);
                 ht1.put(newUser.getUserName(), newUser);
 
-                // TESTING CASES
-                System.out.println(ht1.toString());
-                System.out.println("SUCCESS");
-
-                //TODO: MAKE THIS ENTER ANOTHER RUNFILE, NO NEED TO GO THROUGH LOOP AGAIN
+                //TODO: UNDER THIS LINE LINK WITH MAIN RUNFILE, ACT AS SUCCESSFUL LOGIN
                 
+
+
+
             } else{
                 System.out.println(
                     "No current accounts match your input."
@@ -93,16 +88,11 @@ public class loginPrompt{
                     + "\nOr input 'exit' to exit the program"
                     );
             }
-
-
-
-            //END OF WHILE LOOP (IK THIS IS REALLY OBVIOUS BUT ITS HELPFUL TO SEE IT BIGGER)
         }
         consoleInputScanner.close();
     }
 
     public static user register(Hashtable ht1){
-        //TODO: if i have time make a basic af UI with the inbuilt UI stuff
         Scanner consoleInputScanner = new Scanner(System.in);
 
         //new variables that will be filled by the user
