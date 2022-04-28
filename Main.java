@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {	
 	    
-        Customer cust1 = new Customer("Null", "Null", "000", "Null", "Null", "Null", "Null", 0);
+        Customer cust1 = new Customer("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);
         Scooter scoot1 = new Scooter("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);
         
 		Scanner scan = new Scanner(System.in);
