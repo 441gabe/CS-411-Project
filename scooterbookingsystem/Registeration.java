@@ -8,18 +8,20 @@ public class Registeration {
     private String scooterColor;
     private int scooterPrice;
     private LocalDate reserveDate;
+    private int numOfScooters;
 
     public Registeration() {
         super();
     }
 
-    public Registeration (int serialNumber, String scooterBrand, String scooterColor, int scooterPrice, LocalDate reserveDate){
+    public Registeration (int serialNumber, String scooterBrand, String scooterColor, int scooterPrice, LocalDate reserveDate, int numOfScooters){
         super();
         this.serialNumber = serialNumber;
         this.scooterBrand = scooterBrand;
         this.scooterColor = scooterColor;
         this.scooterPrice = scooterPrice;
         this.reserveDate = reserveDate;
+        this.numOfScooters = numOfScooters;
     }
     
     public int getSerialNumber() {
@@ -60,6 +62,14 @@ public class Registeration {
 
     public void setReserveDate(LocalDate reserveDate) {
         this.reserveDate = reserveDate;
+    }
+
+    public int getNumOfScooters() {
+        return numOfScooters;
+    }
+
+    public void setNumOfScooters(int numOfScooters) {
+        this.numOfScooters = numOfScooters;
     }
 
     
