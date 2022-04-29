@@ -2,25 +2,23 @@ package scooterLogin;
 import java.util.*;
 
 public class loginPrompt{
-    public static void main(String[] args){
+    // public static void main(String[] args){
 
-        /*
-        ////////////////////////////////////////////////////////////////
-        FOR TESTING PURPOSES ONLY, HASH TABLE TO READ FROM
-        */
-        //TODO: MAKE THIS IN A DATABASE FORMAT
-        Hashtable<String, Object> ht1 = new Hashtable<>();
-        user user1 = new user("username1","Henry", "Smith", "12345","hello@gmail.com", "111");
-        ht1.put("user1", user1);
+    //     /*
+    //     ////////////////////////////////////////////////////////////////
+    //     FOR TESTING PURPOSES ONLY, HASH TABLE TO READ FROM
+    //     */
+    //     //TODO: MAKE THIS IN A DATABASE FORMAT
+    //     Hashtable<String, Object> ht1 = new Hashtable<>();
+    //     user user1 = new user("username1","Henry", "Smith", "12345","hello@gmail.com", "111");
+    //     ht1.put("user1", user1);
 
-        loginMethod(ht1);
+    //     loginMethod(ht1);
 
-        //System.out.println("Success");
-    }
+    //     //System.out.println("Success");
+    // }
 
-
-
-    public static void loginMethod(Hashtable ht1){
+    public static boolean loginMethod(Hashtable ht1){
         String userInput = "";
         Scanner consoleInputScanner = new Scanner(System.in);
         boolean exitCondition = false;
@@ -51,22 +49,15 @@ public class loginPrompt{
 
                 //password correctness state
                 boolean correct = false;
-                
-
                 while(!correct){
                     // NOT SURE WHY VSCODE SAYS THIS ALWAYS EVALUATES TO TRUE, INCORRECT
                     System.out.println("Please enter your password: ");
                     String inputPassword = consoleInputScanner.nextLine();
 
                     if(currentUser.getPassword().equals(inputPassword)){
-                        correct = true;
-                        //TODO: CONTINUE THE CODE OUT TO MAIN RUNFILE
-
-
-
-                        System.out.println("SUCCESS!");
+                        //RETURNING TO THE MAIN RUNFILE
                         consoleInputScanner.close();
-                        return;
+                        return true;
                     } else{
                         System.out.println("Incorrect! Please Try Again");
                     }
@@ -83,8 +74,10 @@ public class loginPrompt{
                 // TESTING CASES
                 System.out.println(ht1.toString());
                 System.out.println("SUCCESS");
-
-                //TODO: MAKE THIS ENTER ANOTHER RUNFILE, NO NEED TO GO THROUGH LOOP AGAIN
+                
+                //RETURNING TO THE MAIN RUNFILE
+                consoleInputScanner.close();
+                return true;
                 
             } else{
                 System.out.println(
@@ -98,11 +91,12 @@ public class loginPrompt{
 
             //END OF WHILE LOOP (IK THIS IS REALLY OBVIOUS BUT ITS HELPFUL TO SEE IT BIGGER)
         }
+        
         consoleInputScanner.close();
+        return false;
     }
 
     public static user register(Hashtable ht1){
-        //TODO: if i have time make a basic af UI with the inbuilt UI stuff
         Scanner consoleInputScanner = new Scanner(System.in);
 
         //new variables that will be filled by the user
