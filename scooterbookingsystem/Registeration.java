@@ -28,17 +28,11 @@ public class Registeration {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
-    }
 
     public String getScooterBrand() {
         return scooterBrand;
     }
 
-    public void setScooterBrand(String scooterBrand) {
-        this.scooterBrand = scooterBrand;
-    }
 
     public String getScooterColor() {
         return scooterColor;
