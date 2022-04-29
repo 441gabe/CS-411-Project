@@ -10,7 +10,6 @@ import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
 
 public class ScooterRentalApp {
-
     public static void main(String[] args) {
         ScooterDAO dao = new FileBasedScooterDaoImpl("scooters.txt");
         Scanner consoleInputScanner = new Scanner(System.in);
