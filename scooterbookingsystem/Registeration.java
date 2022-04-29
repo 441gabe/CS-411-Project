@@ -49,16 +49,9 @@ public class Registeration {
         return reserveDate;
     }
 
-    public void setReserveDate(LocalDate reserveDate) {
-        this.reserveDate = reserveDate;
-    }
 
     public int getNumOfScooters() {
         return numOfScooters;
-    }
-
-    public void setNumOfScooters(int numOfScooters) {
-        this.numOfScooters = numOfScooters;
     }
 
     
