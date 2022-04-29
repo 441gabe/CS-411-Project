@@ -1,4 +1,4 @@
-package scooterLogin;
+package scooter;
 import java.util.*;
 
 public class loginPrompt{
@@ -18,7 +18,7 @@ public class loginPrompt{
     //     //System.out.println("Success");
     // }
 
-    public static boolean loginMethod(Hashtable ht1){
+    public static user loginMethod(Hashtable ht1){
         String userInput = "";
         Scanner consoleInputScanner = new Scanner(System.in);
         boolean exitCondition = false;
@@ -57,7 +57,7 @@ public class loginPrompt{
                     if(currentUser.getPassword().equals(inputPassword)){
                         //RETURNING TO THE MAIN RUNFILE
                         consoleInputScanner.close();
-                        return true;
+                        return currentUser;
                     } else{
                         System.out.println("Incorrect! Please Try Again");
                     }
@@ -77,7 +77,7 @@ public class loginPrompt{
                 
                 //RETURNING TO THE MAIN RUNFILE
                 consoleInputScanner.close();
-                return true;
+                return newUser;
                 
             } else{
                 System.out.println(
@@ -93,7 +93,7 @@ public class loginPrompt{
         }
         
         consoleInputScanner.close();
-        return false;
+        return null;
     }
 
     public static user register(Hashtable ht1){
@@ -159,6 +159,6 @@ public class loginPrompt{
         newPassword = consoleInputScanner.nextLine();
 
         consoleInputScanner.close();
-        return new user(newUsername, newFirstName, newLastName, newPhone, newEmail, newPassword);
+        return new user(newUsername, newFirstName, newLastName, newPhone, newEmail, newPassword, "False");
     }
 }

@@ -1,4 +1,4 @@
-package scooterLogin;
+package scooter;
 
 public class user {
     /*
@@ -16,14 +16,16 @@ public class user {
     String phone;
     String email;
     String password;
+    String admin;
 
-    public user(String inputUserName, String inputFirstName, String inputLastName, String inputPhone, String inputEmail, String inputPassword) {
+    public user(String inputUserName, String inputFirstName, String inputLastName, String inputPhone, String inputEmail, String inputPassword, String admin) {
         userName = inputUserName;
         firstName = inputFirstName;
         lastName = inputLastName;
         password = inputPassword;
         email = inputEmail;
         phone = inputPhone.replaceAll("[^\\d.]", "");
+        admin = "False";
     }
 
     public void newPassword(String newPass){
@@ -67,6 +69,9 @@ public class user {
     }
     public String getPassword(){
         return password;
+    }
+    public String getAdmin(){
+        return admin;
     }
 
 }
