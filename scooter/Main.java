@@ -39,10 +39,6 @@ public class Main {
 
             //CALLING LOGIN METHOD
             user currentUser = loginPrompt.loginMethod(userTable);
-
-
-            //change this so login is a user object
-
             boolean login = true;
             while (login){
                 Scanner scans = new Scanner(System.in);
@@ -50,14 +46,13 @@ public class Main {
                 int ans = scans.nextInt();
                 if (ans == 1){
 
-                    //THIS IS A PLACEHOLDER
+                    //CALLING THE RESERVE SCOOTER METHOD IN ANOTHER FILE
                     currentUser.reserveScooter();
                     System.out.println("Scooter reserved successfully");
 
-                    //THE FORMAT SHOULD LOOK LIKE:
-                    // SCOOTER.RESERVESCOOTER(USER OBJECT)
                 } 
                 else if (ans == 2) {
+                    //CALLING THE RETURN SCOOTER METHOD IN ANOTHER FILE
                     currentUser.returnScooter();
                     System.out.println("Scooter returned successfully");
                 } 
@@ -65,6 +60,7 @@ public class Main {
                     login = false;
                 }
                 else {
+                    //USER INPUTS SOMETHING INCORRECTLY
                     System.out.println("Invalid Choice");
                 }
             }
@@ -99,8 +95,11 @@ public class Main {
         			System.out.println("Invalid selection, try again"); 
         		} 
         	}
-
+        } else{
+            System.out.println("Error: Invalid input. Please try again.");
         }
+
+
         //CODE TO WRITE TO A FILE ONCE WE'RE DONE AND THE USER WANTS TO EXIT
         FileWriter writer = new FileWriter("users.txt", true);
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
