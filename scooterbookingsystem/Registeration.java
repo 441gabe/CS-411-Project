@@ -38,17 +38,12 @@ public class Registeration {
         return scooterColor;
     }
 
-    public void setScooterColor(String scooterColor) {
-        this.scooterColor = scooterColor;
-    }
-
+    
     public int getScooterPrice() {
         return scooterPrice;
     }
 
-    public void setScooterPrice(int scooterPrice) {
-        this.scooterPrice = scooterPrice;
-    }
+    
 
     public LocalDate getReserveDate() {
         return reserveDate;
