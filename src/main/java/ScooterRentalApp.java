@@ -15,14 +15,36 @@ public class ScooterRentalApp {
         ScooterDAO dao = new FileBasedScooterDaoImpl("scooters.txt");
         Scanner consoleInputScanner = new Scanner(System.in);
 
-        searchScooterFlow(dao, consoleInputScanner);
+        String action = "";
+        while (!"exit".equals(action)) {
+            do {
+                System.out.println("What would you like to do? (search/reserve/return/exit)");
+                action = consoleInputScanner.nextLine();
+            } while (!List.of("search", "reserve", "return", "exit").contains(action));
 
-        reservationFlow(dao, consoleInputScanner);
+            switch (action) {
+                case "search":
+                    searchScooterFlow(dao, consoleInputScanner);
+                    continue;
+                case "reserve":
+                    reservationFlow(dao, consoleInputScanner);
+                    continue;
+                case "return":
+                    returnFlow(dao, consoleInputScanner);
+                    continue;
+                default:
+            }
+        }
     }
 
     private static void reservationFlow(ScooterDAO dao, Scanner consoleInputScanner) {
         System.out.println("Please copy and paste the scooter from search that you want to reserve");
         dao.reserveScooter(Scooter.fromString(consoleInputScanner.nextLine()));
+    }
+
+    private static void returnFlow(ScooterDAO dao, Scanner consoleInputScanner) {
+        System.out.println("Please copy and paste the scooter you want to return. For example \"honda,45.5,green,2022-04-28,1\"");
+        dao.addScooter(Scooter.fromString(consoleInputScanner.nextLine()));
     }
 
     private static void searchScooterFlow(ScooterDAO dao, Scanner consoleInputScanner) {
@@ -40,7 +62,7 @@ public class ScooterRentalApp {
 
             ScooterSearchCriteria search = ScooterSearchCriteria.Builder.builder()
                     .model(Optional.ofNullable(searchCriteria.get("model")))
-                    .colour(Optional.ofNullable(searchCriteria.get("colour")))
+                    .colour(Optional.ofNullable(searchCriteria.get("color")))
                     .maxPrice(Optional.ofNullable(searchCriteria.get("maxprice")).map(Double::parseDouble))
                     .reservationDate(Optional.ofNullable(searchCriteria.get("date")).map(LocalDate::parse))
                     .build();
