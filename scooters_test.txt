@@ -1,0 +1,5 @@
+model,price,colour,reservation_date,quantity
+Yamaha,55.5,Green,2022-04-28,3
+Honda,45.5,Green,2022-04-28,1
+Suzuki,55.5,Black,2022-04-29,2
+Suzuki,55.5,Green,2022-04-29,3
