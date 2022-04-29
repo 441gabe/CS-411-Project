@@ -28,11 +28,9 @@ public class Registeration {
         return serialNumber;
     }
 
-
     public String getScooterBrand() {
         return scooterBrand;
     }
-
 
     public String getScooterColor() {
         return scooterColor;
@@ -44,11 +42,9 @@ public class Registeration {
     }
 
     
-
     public LocalDate getReserveDate() {
         return reserveDate;
     }
-
 
     public int getNumOfScooters() {
         return numOfScooters;
